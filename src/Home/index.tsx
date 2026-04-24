@@ -1,6 +1,6 @@
 import "./style.css"
 import { useState, useEffect } from 'react'
-import { Link } from "react-router"
+import { Link } from "react-router-dom"
 import checkImg from "../assets/check.png"
 import deleteImg from "../assets/boton-eliminar.png"
 import noCargaImg from "../assets/nocarga.png"

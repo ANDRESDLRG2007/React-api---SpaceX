@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router"
+import { useParams, Link } from "react-router-dom"
 import { useEffect, useState } from "react"
 import "./style.css"
 import checkImg from "../assets/check.png"
@@ -29,6 +29,7 @@ function LaunchDetail() {
   // recordar
   // (esta lógica carga los datos del lanzamiento seleccionado usando el id de la URL)
   // (también verifica si este lanzamiento ya está marcado como favorito en localStorage)
+  
   useEffect(() => {
     if (!id) return
     const favs = JSON.parse(localStorage.getItem('spacex-favorites') || '[]')
