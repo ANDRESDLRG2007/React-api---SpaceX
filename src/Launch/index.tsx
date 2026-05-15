@@ -1,9 +1,10 @@
-import { useParams, Link } from "react-router-dom"
+import { useParams, Link, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import "./style.css"
 import checkImg from "../assets/check.png"
 import deleteImg from "../assets/boton-eliminar.png"
 import noCargaImg from "../assets/nocarga.png"
+import { useAuth } from "../AuthContext"
 
 interface Launch {
   id: string
@@ -25,6 +26,8 @@ function LaunchDetail() {
   const { id } = useParams<{ id: string }>()
   const [launch, setLaunch] = useState<Launch | null>(null)
   const [isFavorite, setIsFavorite] = useState(false)
+  const { user } = useAuth()
+  const navigate = useNavigate()
 
   // recordar
   // (esta lógica carga los datos del lanzamiento seleccionado usando el id de la URL)
@@ -45,6 +48,12 @@ function LaunchDetail() {
   // (esta función agrega o quita el lanzamiento de la lista de favoritos en localStorage)
   const toggleFavorite = () => {
     if (!id) return
+    if (!user) {
+      alert('Necesitas iniciar sesión para agregar favoritos')
+      navigate('/login')
+      return
+    }
+
     let favs = JSON.parse(localStorage.getItem('spacex-favorites') || '[]')
     if (favs.includes(id)) {
       favs = favs.filter((f: string) => f !== id)

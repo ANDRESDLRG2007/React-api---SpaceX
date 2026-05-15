@@ -37,7 +37,8 @@ function Home() {
 
   const filtros: FiltroTipo[] = ['todos', 'proximos', 'exitosos', 'cohetes']
 
-  // igual que la guia: el useEffect depende del filtro y cambia el endpoint
+  // igual que en la liga el useEffect depende del filtro y cambia el endpoint
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
